@@ -1,23 +1,44 @@
-#include "string_calculator.h"
-#include "utils.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
-static void set_default_delimiters(Delimiters* d) {
+#define MAX_DELIMITERS 10
+#define MAX_DELIM_LEN 10
+#define MAX_NEGATIVES 50
+
+typedef struct {
+    char delimiters[MAX_DELIMITERS][MAX_DELIM_LEN];
+    int count;
+} Delimiters;
+
+typedef struct {
+    int sum;
+    int negatives[MAX_NEGATIVES];
+    int negative_count;
+} AddResult;
+
+int starts_with(const char* str, const char* prefix) {
+    return strncmp(str, prefix, strlen(prefix)) == 0;
+}
+
+// Add default delimiters ',' and '\n'
+void set_default_delimiters(Delimiters* d) {
     strcpy(d->delimiters[0], ",");
     strcpy(d->delimiters[1], "\n");
     d->count = 2;
 }
 
-static int parse_single_delimiter(const char* ptr, Delimiters* delimiters) {
+
+int parse_single_delimiter(const char* ptr, Delimiters* delimiters) {
     delimiters->count = 1;
     delimiters->delimiters[0][0] = ptr[0];
     delimiters->delimiters[0][1] = '\0';
     return 1;
 }
 
-static int parse_multi_delimiters(const char* ptr, Delimiters* delimiters) {
+
+int parse_multi_delimiters(const char* ptr, Delimiters* delimiters) {
     int read_chars = 0;
     delimiters->count = 0;
 
@@ -64,7 +85,11 @@ const char* parse_delimiters(const char* input, Delimiters* delimiters) {
     return input;
 }
 
-static void process_token(const char* token, AddResult* result) {
+int matches_delimiter(const char* str, const char* delimiter) {
+    return strncmp(str, delimiter, strlen(delimiter)) == 0;
+}
+
+void process_token(const char* token, AddResult* result) {
     if (*token == '\0') return;
 
     int num = atoi(token);
@@ -101,6 +126,7 @@ AddResult add(const char* input) {
             if (isdigit(*numbers) || (*numbers == '-' && buf_index == 0)) {
                 buffer[buf_index++] = *numbers++;
             } else {
+                // ignore invalid chars like spaces or unexpected symbols
                 numbers++;
             }
         }
@@ -111,3 +137,15 @@ AddResult add(const char* input) {
     return result;
 }
 
+void print_result(AddResult res) {
+    if (res.negative_count > 0) {
+        printf("Exception: negatives not allowed: ");
+        for (int i = 0; i < res.negative_count; i++) {
+            printf("%d", res.negatives[i]);
+            if (i != res.negative_count - 1) printf(", ");
+        }
+        printf("\n");
+    } else {
+        printf("Sum: %d\n", res.sum);
+    }
+}
