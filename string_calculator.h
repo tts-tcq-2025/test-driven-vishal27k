@@ -16,8 +16,12 @@ typedef struct {
     int negative_count;
 } AddResult;
 
-const char* parse_delimiters(const char* input, Delimiters* delimiters);
 
 AddResult add(const char* input);
 
+void print_result(AddResult res);
+
+const char* parse_delimiters(const char* input, Delimiters* delimiters);
+
 #endif // STRING_CALCULATOR_H
+
