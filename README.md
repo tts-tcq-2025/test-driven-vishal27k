@@ -16,6 +16,17 @@ the first line is optional. all existing scenarios should still be supported
 - Numbers bigger than 1000 should be ignored, so adding 2 + 1001 = 2
 - Delimiters can be of any length with the following format: “//[delimiter]\n” for example: “//[***]\n1***2***3” should return 6
 
+Understanding:
+
+Create Stringcalculator functionality containing Function Add Method which shall return the sum of the provided inputs following the below conditions:
+- Empty String Handling : When the input string is empty, the function shall return 0.
+- Variable Number of Inputs : The function shall be able to handle an unknown number of inputs.
+- Function shall support the use of multiple delimiters
+- Custom Delimiter Support: Function shall be able to use custom delimiter of any length provided by the user.
+- Negative Number Handling: when there is a negative number as input, function shall throw an exception with the list of negative numbers.
+- Ignoring Large Numbers: Function shall ignore the numbers > 1000.
+  
+
 ## Tasks
 
 
