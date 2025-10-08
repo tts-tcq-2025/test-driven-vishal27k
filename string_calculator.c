@@ -3,26 +3,10 @@
 #include <string.h>
 #include <ctype.h>
 
-#define MAX_DELIMITERS 10
-#define MAX_DELIM_LEN 10
-#define MAX_NEGATIVES 50
-
-typedef struct {
-    char delimiters[MAX_DELIMITERS][MAX_DELIM_LEN];
-    int count;
-} Delimiters;
-
-typedef struct {
-    int sum;
-    int negatives[MAX_NEGATIVES];
-    int negative_count;
-} AddResult;
-
 int starts_with(const char* str, const char* prefix) {
     return strncmp(str, prefix, strlen(prefix)) == 0;
 }
 
-// Add default delimiters ',' and '\n'
 void set_default_delimiters(Delimiters* d) {
     strcpy(d->delimiters[0], ",");
     strcpy(d->delimiters[1], "\n");
