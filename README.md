@@ -16,6 +16,7 @@ the first line is optional. all existing scenarios should still be supported
 - Numbers bigger than 1000 should be ignored, so adding 2 + 1001 = 2
 - Delimiters can be of any length with the following format: “//[delimiter]\n” for example: “//[***]\n1***2***3” should return 6
 
+Understanding:
 - Empty String Handling : When the input string is empty, the function shall return 0.
 - Variable Number of Inputs : The function shall be able to handle an unknown number of inputs.
 - Function shall support the use of multiple delimiters
