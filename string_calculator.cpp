@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "string_calculator.h"
 
 int starts_with(const char* str, const char* prefix) {
     return strncmp(str, prefix, strlen(prefix)) == 0;
