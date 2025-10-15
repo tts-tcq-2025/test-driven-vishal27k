@@ -10,7 +10,7 @@
 | 4 | Multiple numbers | `"1,2,3,4"` | `10` |
 | 5 | Newline as delimiter | `"1\n2,3"` | `6` |
 | 6 | Custom single-character delimiter 1 | `"//;\n1;2"` | `3` |
-| 7 | Custom single-character delimiter 2 | `"//|\n1|2|3"` | `6` |
+| 7 | Custom single-character delimiter 2 | `"//!\n1!2!3"` | `6` |
 | 8 | Custom multi-character delimiter | `"//[***]\n1***2***3"` | `6` |
 | 9 | Custom multi-character delimiter with letters | `"//[abc]\n2abc3abc4"` | `9` |
 | 10 | Multiple single-character delimiters | `"//[*][%]\n1*2%3"` | `6` |
